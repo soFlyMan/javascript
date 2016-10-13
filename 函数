@@ -1,0 +1,32 @@
+js-函数
+
+# 函数
+
+## this的工作原理
+*全局范围内**
+
+>this;
+指向全局对象
+
+## 闭包和引用
+这意味着当前作用域总是能够访问外部作用域的变量。因为函数是js中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。
+
+**模拟私有变量**
+```
+ function Conter(start){
+    var conut=start;
+    return{
+        increment:function(){
+            count++;
+        },
+        get:function(){
+            return count;
+        }
+    }
+}
+var foo=Counter(4);
+foo.increment();
+foo.get();//5
+
+```
+
