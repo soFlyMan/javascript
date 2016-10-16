@@ -1,0 +1,102 @@
+javaScript深入浅出
+
+### 数据类型
+
+- 基本类型
+- 引用类型
+
+#### 包装对象
+```
+var str="string";
+var strObj=new String("String")
+str //string
+strObj //String {0: "s", 1: "t", 2: "r", 3: "i", 4: "n", 5: "g", length: 6, [[PrimitiveValue]]: "string"}
+```
+str是string(基本类型)，本身是没有方法的。
+
+
+
+当尝试把基本类型的str当做对象一样访问时，例如：str.length; 
+
+解释器会创建一个临时的包装对象，伪代码：
+```
+[[tempObj]] = new String(str);
+
+[[tempObj]].length; // 返回具体的length;
+
+delete [[tempObj]]; // 销毁临时对象
+
+```
+
+重复访问str.length会重复创建这个临时对象。
+
+所以str.t赋值可以成功，但再次访问str.t返回undefined，因为每次创建的临时包装对象都是不同的。
+
+#### js类型检测
+
+- typeof
+- instanceof
+- Object.property.toString
+- constructor
+- duck type
+
+**typeof**
+
+函数对象和基本类型的判断
+
+typeof 100 //number 
+typeof null //object (历史原因)
+typeof NaN  //number
+
+**obj instanceof Object**
+
+判断对象类型(Array..) 基于原型链的判断操作符
+
+```
+[1,2] instanceof Array===true;
+new Object() instanceofArray===false;
+
+function Person(){};
+function Student(){};
+Student.prototype=new Person(); //Person{}
+Student.prototype.constructor=Student; //function Student();
+var bosn=new Student();
+bosn instanceof Student; //true
+var one=new Person();
+one instanceof Person; //true
+one instanceof Student;//false
+bosn instanceof Person;//true
+```
+js是按引用判断对象
+
+Caution 不同window或iframe间的对象类型检测不能使用instanceof
+
+**Object.prototype.toString**
+
+```
+Object.prototype.toString.apply([]); ==="[object Array]";
+```
+
+
+#### 运算符
+- in
+- typeof instanceof
+- delete
+- new
+- this
+```
+```
+
+**function**
+```
+//这种方式编译后函数声明和它的赋值都会被提前
+fd();//true
+function fd(){
+    return true;
+}
+
+fe();//false
+var fe=function(){
+
+};
+```
