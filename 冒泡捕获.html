@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+<style>
+body {
+    margin-top: 0px;
+    padding: 400px;
+}
+
+div {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+div span {
+    display: block;
+    padding: 20px;
+}
+</style>
+
+<body>
+    <div>
+        <span class="s1">s1
+    <span class="s2">s2
+      <span class="s3">s3
+      </span>
+        </span>
+        </span>
+    </div>
+    <div>
+        <a href="/">点我回主页</a>
+    </div>
+    <div>
+        <a href="/" class="back">点我不回主页</a>
+    </div>
+    <script type="text/javascript">
+    var back = document.getElementsByClassName('back')[0];
+    back.addEventListener('click', function(e) {
+        e.preventDefault();
+    });
+    </script>
+    <script type="text/javascript">
+    var s1 = document.getElementsByClassName('s1')[0];
+    var s2 = document.getElementsByClassName('s2')[0];
+    var s3 = document.getElementsByClassName('s3')[0];
+    s1.addEventListener('click', function() {
+        alert('s1');
+    }, false);
+    s2.addEventListener('click', function() {
+        alert('s2');
+    }, true);
+    s3.addEventListener('click', function() {
+        alert('s3');
+    }, false);
+    s1.addEventListener('click', function(e) {
+        e.stopPropagation();
+        alert('s1');
+    }, false);
+    s2.addEventListener('click', function(e) {
+        e.stopPropagation();
+        alert('s2');
+    }, true);
+    s3.addEventListener('click', function(e) {
+        e.stopPropagation();
+        alert('s3');
+    }, false);
+    </script>
+</body>
+
+</html>
