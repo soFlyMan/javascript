@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="dist/css/zui.min.css">
+    <link rel="stylesheet" href="login_register.css">
+    <script src="dist/lib/jquery/jquery.js"></script>
+    <script src="dist/js/zui.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+<div class="list-group">
+  <a href="images/pic01.jpg" class="list-group-item" onclick="showPic(this); return false;">用项目</a>
+  <a href="images/pic02.jpg" class="list-group-item" onclick="showPic(this); return false;">待办</a>
+  <a href="images/pic03.jpg" class="list-group-item" onclick="showPic(this); return false;">需求</a>
+  <a href="images/pic04.jpg" class="list-group-item" onclick="showPic(this); return false;">任务</a>
+  <a href="images/pic05.jpg" class="list-group-item" onclick="showPic(this); return false;">Bug</a>
+  <a href="images/pic06.jpg" class="list-group-item" onclick="showPic(this); return false;">用例</a>
+</div>
+<img src="images/pic16.jpg" alt="my image gallery" id="placeholder">
+</div>
+</body>
+<script>
+  function showPic(whichpic){
+    var source=whichpic.getAttribute("href");
+    var placeholder=document.getElementById("placeholder");
+    placeholder.setAttribute("src",source);
+  }
+</script>
+</html>
+
