@@ -1,0 +1,31 @@
+###javaScritp DOM
+- childNodes[0]
+- nodeType
+   元素节点：1
+   属性节点：2
+   文本节点：3
+- nodeValue
+- firstChild lastChild
+
+
+- document.wirte()
+- innerHTML
+- creatElement
+- creatTextNode
+- appendChild
+```
+<div id="testdiv">
+
+</div>
+
+<script>
+window.onload=function(){
+var testdiv=document.getElementById("testdiv");
+var para=document.createElement("p");
+var txt=document.createTextNode("Hello world!");
+testdiv.appendChild(para);
+para.appendChild(txt);
+}
+
+</script>
+```

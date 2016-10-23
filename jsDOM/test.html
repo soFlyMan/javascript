@@ -9,9 +9,23 @@
     <script src="dist/lib/jquery/jquery.js"></script>
     <script src="dist/js/zui.min.js"></script>
 </head>
+<style>
+  #testdiv{
+    width: 200px;
+    height: 200px;
+    background: #ccc;
+    font-size: 40px;
+    color: #F00;
+  }
+
+</style>
+
 
 <body>
 <div class="container">
+<div id="testdiv">
+
+</div>
 <div class="list-group">
   <a href="images/pic01.jpg" class="list-group-item" onclick="showPic(this); return false;">用项目</a>
   <a href="images/pic02.jpg" class="list-group-item" onclick="showPic(this); return false;">待办</a>
@@ -21,9 +35,25 @@
   <a href="images/pic06.jpg" class="list-group-item" onclick="showPic(this); return false;">用例</a>
 </div>
 <img src="images/pic16.jpg" alt="my image gallery" id="placeholder">
+
 </div>
+
+
+
+
 </body>
 <script>
+  window.onload=function(){
+var testdiv=document.getElementById("testdiv");
+var para=document.createElement("p");
+testdiv.appendChild(para);
+var txt=document.createTextNode("Hello world!");
+para.appendChild(txt);
+}
+
+</script>
+<script>
+
   function showPic(whichpic){
     var source=whichpic.getAttribute("href");
     var placeholder=document.getElementById("placeholder");
