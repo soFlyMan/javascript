@@ -1,0 +1,48 @@
+# 数据结构与算法 javaScript描述
+
+## 数组
+
+- 由字符串生成数组
+split()
+```
+var sentence="the quick brown fox jumped over the lazy dog";
+var words=sentence.split(" ");
+for(var i=0;i<words.length;i++){
+    console.log("word"+i+":"+words[i]);
+}
+```
+- 对数组的整体性操作
+
+*浅复制*
+当把一个数组赋给另外一个数组时，只是为被赋值的数组增加了一个新的引用。
+```
+samewords=words;
+words[0]=100;
+samewords[0]; //100
+
+```
+
+*深复制*
+```
+function copy(arr1,arr2){
+for(var i=0;i<arr1.length;i++){
+    arr2[i]=arr1[i];
+}
+}
+```
+
+- 存取函数
+
+**查找函数**
+```
+function findElement(name) {
+    var position=words.indexOf(name);
+    if(position>=0){
+        console.log("found"+name+" at position "+position);
+    }else{
+        console.log(name+ " not found!");
+    }
+
+}
+findElement("brown"); //found brown at position 2
+```
