@@ -10,12 +10,19 @@
     <script src="dist/js/zui.min.js"></script>
 </head>
 <style>
-  #testdiv{
+  #description{
     width: 200px;
     height: 200px;
     background: #ccc;
     font-size: 40px;
     color: #F00;
+  }
+  #nav{
+    width: 100%;
+    height: 200px;
+    background:#eee;
+    font-size: 80px;
+    color: #000;
   }
 
 </style>
@@ -23,42 +30,86 @@
 
 <body>
 <div class="container">
-<div id="testdiv">
-
-</div>
-<div class="list-group">
-  <a href="images/pic01.jpg" class="list-group-item" onclick="showPic(this); return false;">用项目</a>
-  <a href="images/pic02.jpg" class="list-group-item" onclick="showPic(this); return false;">待办</a>
-  <a href="images/pic03.jpg" class="list-group-item" onclick="showPic(this); return false;">需求</a>
-  <a href="images/pic04.jpg" class="list-group-item" onclick="showPic(this); return false;">任务</a>
-  <a href="images/pic05.jpg" class="list-group-item" onclick="showPic(this); return false;">Bug</a>
-  <a href="images/pic06.jpg" class="list-group-item" onclick="showPic(this); return false;">用例</a>
-</div>
-<img src="images/pic16.jpg" alt="my image gallery" id="placeholder">
-
+<div id="nav"></div>
+<div id="description">
+sadd
 </div>
 
+<div class="list-group" id="gallery">
+  <a href="images/pic01.jpg" class="list-group-item"  title="1">用项目</a>
+  <a href="images/pic02.jpg" class="list-group-item"  title="12">待办</a>
+  <a href="images/pic03.jpg" class="list-group-item"  title="123">需求</a>
+  <a href="images/pic04.jpg" class="list-group-item"  title="1234">任务</a>
+  <a href="images/pic05.jpg" class="list-group-item"  title="12345">Bug</a>
+  <a href="images/pic06.jpg" class="list-group-item"  title="123456">用例</a>
+</div>
+<img src="images/pic01.jpg" alt="my image gallery" id="placeholder">
+
+</div>
 
 
 
 </body>
 <script>
   window.onload=function(){
+var nav=document.getElementById("nav");
 var testdiv=document.getElementById("testdiv");
 var para=document.createElement("p");
+// var description=document.getElementById("gallery");
 testdiv.appendChild(para);
 var txt=document.createTextNode("Hello world!");
 para.appendChild(txt);
+nav.parentNode.insertBefore(testdiv,nav);
+
+
 }
 
 </script>
 <script>
-
+  function insertAfter(newElement,targetElement){
+  var parent=targetElement.parentNode;
+  if(parent.lastChild==targetElement){
+    parent.appendChild(newElement);
+  }else{
+    parent.insertBefore(newElement,targetElement.nextSibling);
+  }
+}
   function showPic(whichpic){
+    if(!document.getElementById("placeholder")) return false;
     var source=whichpic.getAttribute("href");
     var placeholder=document.getElementById("placeholder");
+    if(placeholder.nodeName!="IMG") return false;
     placeholder.setAttribute("src",source);
+    if(document.getElementById("description")){
+    var text=whichpic.getAttribute("title");
+    var description=document.getElementById("description");
+    if(description.firstChild.nodeType==3){
+    description.firstChild.nodeValue=text;
+    // gallery.parentNode.insertBefore(placeholder,gallery)
+    // insertAfter(placeholder,gallery);
+    insertAfter(description,placeholder);
+    }
   }
+
+}
+
+
+        function prepareGallery(){
+         if (!document.getElementsByTagName) return false;
+         if(!document.getElementById) return false;
+         if (!document.getElementById("gallery")) return false;
+         var gallery=document.getElementById("gallery");
+         var links=document.getElementsByTagName("a");
+         for(var i=0;i<links.length;i++){
+          links[i].onclick=function(){
+          showPic(this);
+          return false; 
+             }
+         }
+    }
+    window.onload=function(){
+      prepareGallery();
+    }
 </script>
 </html>
 
