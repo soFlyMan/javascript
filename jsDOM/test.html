@@ -12,7 +12,7 @@
 <style>
   #description{
     width: 200px;
-    height: 200px;
+    height: auto;
     background: #ccc;
     font-size: 40px;
     color: #F00;
@@ -24,33 +24,36 @@
     font-size: 80px;
     color: #000;
   }
+  img{
+    width: 600px;
+    height: 400px;
+  }
+  .nav img{
+    width: 100px;
+    height: 80px;
+  }
 
 </style>
 
 
 <body>
 <div class="container">
-<div id="nav"></div>
+<!-- <div id="nav"></div>
 <div id="description">
 sadd
+</div> -->
+
+<ul class="nav nav-primary" id="gallery">
+  <li><a href="images/pic01.jpg" class="list-group-item"  title="1"><img src="images/pic01.jpg" alt=""></a></li>
+  <li><a href="images/pic02.jpg" class="list-group-item"  title="12"><img src="images/pic02.jpg" alt=""></a></li>
+  <li><a href="images/pic03.jpg" class="list-group-item"  title="123"><img src="images/pic03.jpg" alt=""></a></li>
+  <li><a href="images/pic04.jpg" class="list-group-item"  title="1234"><img src="images/pic04.jpg" alt=""></a></li>
+  <li><a href="images/pic05.jpg" class="list-group-item"  title="12345"><img src="images/pic05.jpg" alt=""></a></li>
+  <li><a href="images/pic06.jpg" class="list-group-item"  title="123456"><img src="images/pic06.jpg" alt=""></a></li>
+</ul>
 </div>
-
-<div class="list-group" id="gallery">
-  <a href="images/pic01.jpg" class="list-group-item"  title="1">用项目</a>
-  <a href="images/pic02.jpg" class="list-group-item"  title="12">待办</a>
-  <a href="images/pic03.jpg" class="list-group-item"  title="123">需求</a>
-  <a href="images/pic04.jpg" class="list-group-item"  title="1234">任务</a>
-  <a href="images/pic05.jpg" class="list-group-item"  title="12345">Bug</a>
-  <a href="images/pic06.jpg" class="list-group-item"  title="123456">用例</a>
-</div>
-<img src="images/pic01.jpg" alt="my image gallery" id="placeholder">
-
-</div>
-
-
-
 </body>
-<script>
+<!-- <script>
   window.onload=function(){
 var nav=document.getElementById("nav");
 var testdiv=document.getElementById("testdiv");
@@ -64,8 +67,19 @@ nav.parentNode.insertBefore(testdiv,nav);
 
 }
 
-</script>
+</script> -->
 <script>
+function addLoadEvent(func){
+  var oldonload=window.onload;
+  if(typeof window.onload!='function'){
+    window.onload=func;
+  }else{
+    window.onload=function(){
+      oldonload();
+      func();
+    }
+  }
+}
   function insertAfter(newElement,targetElement){
   var parent=targetElement.parentNode;
   if(parent.lastChild==targetElement){
@@ -87,10 +101,10 @@ nav.parentNode.insertBefore(testdiv,nav);
     description.firstChild.nodeValue=text;
     // gallery.parentNode.insertBefore(placeholder,gallery)
     // insertAfter(placeholder,gallery);
-    insertAfter(description,placeholder);
+    // insertAfter(description,placeholder);
     }
   }
-
+return true;
 }
 
 
@@ -107,9 +121,26 @@ nav.parentNode.insertBefore(testdiv,nav);
              }
          }
     }
-    window.onload=function(){
-      prepareGallery();
+
+    function preparePlaceholder(){
+      if(!document.createElement) return false;
+      if(!document.createTextNode) return false;
+      if(!document.getElementById) return false;
+      if(!document.getElementById("gallery")) return false;
+      var placeholder=document.createElement("img");
+      placeholder.setAttribute("id","placeholder");
+      placeholder.setAttribute("src","images/pic16.jpg");
+      placeholder.setAttribute("alt","my image gallery");
+      var description=document.createElement("p");
+      description.setAttribute("id","description");
+      var desctxt=document.createTextNode("Choose an image");
+      description.appendChild(desctxt);
+      insertAfter(placeholder,gallery);
+      insertAfter(description,placeholder);
     }
+    addLoadEvent(preparePlaceholder);
+    addLoadEvent(prepareGallery);
+ 
 </script>
 </html>
 
