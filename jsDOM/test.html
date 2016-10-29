@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="login_register.css">
     <script src="dist/lib/jquery/jquery.js"></script>
     <script src="dist/js/zui.min.js"></script>
+    <script src="js/getHTTPObject.js"></script>
+    <script src="js/getNewContent.js"></script>
 </head>
 <style>
   #description{
@@ -122,7 +124,7 @@ return true;
          }
     }
 
-    function preparePlaceholder(){
+    function preparePlaceholder(){     
       if(!document.createElement) return false;
       if(!document.createTextNode) return false;
       if(!document.getElementById) return false;
@@ -140,6 +142,7 @@ return true;
     }
     addLoadEvent(preparePlaceholder);
     addLoadEvent(prepareGallery);
+    addLoadEvent(getNewContent);
  
 </script>
 </html>
