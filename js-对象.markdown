@@ -66,3 +66,5 @@ cat.legs=4;
 cat.propertyIsEnumberable("legs");//是否可枚举
 
 Object.defineProperty(cat,'prince',{enumberable:false,value:1000});//默认为false
+
+>this 当前函数的拥有者

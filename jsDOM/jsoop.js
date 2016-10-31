@@ -60,10 +60,12 @@ console.log(kick.run());
 // console.log(will._proto_);
 // console.log(will.constructor);
 
-function Person() {
-   this.name="zhaoweijie";console.log(person1.name);
-}
-Person.prototype.age="soFly";
-var person1=new Person();
-console.log(person1.name);
-console.log(person1.age);
+//function Person() {
+  // this.name="zhaoweijie";
+    //console.log(person1.name);
+//}
+//Person.prototype.age="soFly";
+//var person1=new Person();
+//console.log(person1.name);
+//console.log(person1.age);
+
