@@ -13,3 +13,4 @@ function Dog(words){
 }
 var dog=new Dog('wang');
 console.log(dog);
+consoloe.log('123');
